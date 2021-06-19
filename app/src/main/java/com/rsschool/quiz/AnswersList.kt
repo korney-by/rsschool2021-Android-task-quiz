@@ -1,12 +1,11 @@
 package com.rsschool.quiz
 
-object AnswerList {
-    const val NO_ANSWER = -1
+object AnswersList {
+    private const val NO_ANSWER = -1
     private val answerList: IntArray = IntArray(QuestionsList.getSize()) { NO_ANSWER }
 
-
-    fun getSize(): Int {
-        return answerList.size
+    fun isNoAnswer(index:Int):Boolean{
+        return (answerList[index] == NO_ANSWER)
     }
 
     fun getAnswer(index: Int): Int {
@@ -17,13 +16,13 @@ object AnswerList {
         answerList[index] = value
     }
 
-    fun revokeOne(index:Int){
+    fun revokeOne(index: Int) {
         answerList[index] = NO_ANSWER
     }
 
     fun revokeAll() {
-        for (i in answerList) {
-            answerList[i] = NO_ANSWER
+        for (i in 0 until answerList.size) {
+            revokeOne(i)
         }
     }
 }

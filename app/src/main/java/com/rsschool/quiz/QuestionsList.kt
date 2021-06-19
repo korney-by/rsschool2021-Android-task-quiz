@@ -7,9 +7,8 @@ object QuestionsList {
         return questionsList.size
     }
 
-    private fun add(text: String, _correctAnswer: Int, _answers: ArrayList<String>) {
-        val question = Question(text, _correctAnswer, _answers)
-        questionsList.add(question)
+    private fun add(text: String, correctAnswer: Int, answers: ArrayList<String>) {
+        questionsList.add(Question(text, correctAnswer, answers))
     }
 
     fun getQuestion(index: Int): Question {
@@ -24,14 +23,21 @@ object QuestionsList {
             arrayListOf("Солнце", "Луна", "Звезды", "Фонари", "Фингал под глазом")
         )
         add(
-            "Кто играл Terminator I?",
-            5,
-            arrayListOf("Сильвестр Сталоне","Чак Норрис","Дуэйн \"Скала\" Джонсон","Михаил Пореченков","Арнольд Шварцнегер","Кто все эти люди?")
+            "Кто играл роль Terminator I?",
+            4,
+            arrayListOf(
+                "Сильвестр Сталоне",
+                "Чак Норрис",
+                "Дуэйн \"Скала\" Джонсон",
+                "Михаил Пореченков",
+                "Арнольд Шварцнегер",
+                "Кто все эти люди?"
+            )
         )
         add(
             "Что даёт корова?",
-            5,
-            arrayListOf("Мясо","Молоко","Сметану","Сефир","Пиво","Виски")
+            1,
+            arrayListOf("Мясо", "Молоко", "Сметану", "Кефир", "Пиво", "Виски")
         )
     }
 }
