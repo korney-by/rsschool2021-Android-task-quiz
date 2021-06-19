@@ -1,4 +1,4 @@
-package com.rsschool.quiz
+package com.rsschool.quiz.data
 
 object AnswersList {
     private const val NO_ANSWER = -1

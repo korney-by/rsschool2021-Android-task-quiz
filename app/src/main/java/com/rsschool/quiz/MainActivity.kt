@@ -2,29 +2,25 @@ package com.rsschool.quiz
 
 
 import android.os.Bundle
+import android.util.TypedValue
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
+import com.rsschool.quiz.data.AnswersList
+import com.rsschool.quiz.data.Themes
 import com.rsschool.quiz.databinding.ActivityMainBinding
+import com.rsschool.quiz.interfaces.Navigator
+import com.rsschool.quiz.interfaces.Painter
 
-
-class MainActivity : AppCompatActivity(), Navigator {
+class MainActivity : AppCompatActivity(), Painter, Navigator {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        with(binding) {
-            setContentView(root)
+        setContentView(binding.root)
 
-//            viewPager.adapter=MyAdapter()
-//            viewPager.orientation=ViewPager2.ORIENTATION_HORIZONTAL
-        }
-
-
-        openFragmentQuiz(0)
-
+        startQuiz()
     }
 
     private fun openFragmentQuiz(questonNumber: Int) {
@@ -32,19 +28,45 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_container, fragmentQuiz)
-            //.add(R.id.main_container, fragmentQuiz)
             .commit()
     }
 
     private fun openFragmentResult(resultPercent: Int) {
         val fragmentResult: Fragment = FragmentResult.newInstance(resultPercent)
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.main_container, fragmentResult)
-        transaction.commit()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_container, fragmentResult)
+            .commit()
     }
 
-    override fun showFragmentQuiz(questonNumber: Int) {
-        openFragmentQuiz(questonNumber)
+
+    private fun setColorTheme(number: Int) {
+        setTheme(Themes.getTheme(number))
+        setColorStatusBar()
+    }
+
+    private fun setColorStatusBar() {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(android.R.attr.statusBarColor, typedValue, true)
+        window.statusBarColor = typedValue.data
+    }
+
+    private fun startQuiz(){
+        applyTheme(0)
+        openFragmentQuiz(0)
+    }
+
+    override fun restartQuiz() {
+        AnswersList.revokeAll()
+        startQuiz()
+    }
+
+    override fun applyTheme(number: Int) {
+        setColorTheme(number)
+    }
+
+    override fun showFragmentQuiz(questionNumber: Int) {
+        openFragmentQuiz(questionNumber)
     }
 
     override fun showFragmentResult(resultPercent: Int) {

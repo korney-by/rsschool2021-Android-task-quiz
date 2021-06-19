@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.rsschool.quiz.data.AnswersList
+import com.rsschool.quiz.data.QuestionsList
 import com.rsschool.quiz.databinding.FragmentResultBinding
+import com.rsschool.quiz.interfaces.Navigator
 import java.lang.StringBuilder
 import kotlin.system.exitProcess
 
@@ -56,8 +59,8 @@ class FragmentResult : Fragment() {
     private fun getTextResults(): String {
         val result = StringBuilder("You result: $resultPercent %\n\n")
         for (i in 0 until QuestionsList.getSize()) {
-            result.appendLine("${i+1}) ${QuestionsList.getQuestion(i).text}")
-            result.appendLine("Your answer: ${QuestionsList.getQuestion(i).answers[AnswersList.getAnswer(i)]}\n")
+            result.appendLine("${i+1}) ${QuestionsList.getText(i)}")
+            result.appendLine("Your answer: ${QuestionsList.getAnswers(i)[AnswersList.getAnswer(i)]}\n")
         }
         return result.toString()
     }
@@ -80,8 +83,7 @@ class FragmentResult : Fragment() {
     }
 
     private fun repeatQuiz() {
-        AnswersList.revokeAll()
-        Navigator().showFragmentQuiz(0)
+        Navigator().restartQuiz()
     }
 
     companion object {
