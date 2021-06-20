@@ -16,12 +16,12 @@ object AnswersList {
         answerList[index] = value
     }
 
-    fun revokeOne(index: Int) {
+    private fun revokeOne(index: Int) {
         answerList[index] = NO_ANSWER
     }
 
     fun revokeAll() {
-        for (i in 0 until answerList.size) {
+        for (i in answerList.indices) {
             revokeOne(i)
         }
     }

@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
         startQuiz()
     }
 
-    private fun openFragmentQuiz(questonNumber: Int) {
-        val fragmentQuiz = FragmentQuiz.newInstance(questonNumber)
+    private fun openFragmentQuiz(questionNumber: Int) {
+        val fragmentQuiz = FragmentQuiz.newInstance(questionNumber)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_container, fragmentQuiz)

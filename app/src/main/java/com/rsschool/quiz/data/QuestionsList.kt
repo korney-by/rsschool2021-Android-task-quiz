@@ -25,7 +25,7 @@ object QuestionsList {
         return getQuestion(index).text
     }
 
-    fun getCorrectAnswer(index: Int): Int {
+    private fun getCorrectAnswer(index: Int): Int {
         return getQuestion(index).correctAnswer
     }
 
@@ -35,12 +35,12 @@ object QuestionsList {
 
     fun getResult(userAnswers: AnswersList): Int {
         var correctCount = 0
-        for (i in 0 until QuestionsList.getSize()) {
-            if (QuestionsList.getCorrectAnswer(i) == userAnswers.getAnswer(i)) {
+        for (i in 0 until getSize()) {
+            if (getCorrectAnswer(i) == userAnswers.getAnswer(i)) {
                 correctCount++
             }
         }
-        return correctCount * 100 / QuestionsList.getSize()
+        return correctCount * 100 / getSize()
     }
 
     init {

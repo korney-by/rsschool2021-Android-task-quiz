@@ -1,7 +1,7 @@
 package com.rsschool.quiz
 
+
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -95,7 +95,7 @@ class FragmentQuiz : Fragment() {
         setEnabledButtons()
         binding.quizToolbar.title = "Question ${questionNumber + 1}"
         if (questionNumber == QuestionsList.getSize() - 1) {
-            binding.nextButton.text = "SUBMIT"
+            binding.nextButton.text = getString(R.string.submit_button)
         }
     }
 
