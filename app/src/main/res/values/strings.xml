@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Quiz</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="submit_button">SUBMIT</string>
     <string name="your_result">Your result: %1$s \%%</string>
