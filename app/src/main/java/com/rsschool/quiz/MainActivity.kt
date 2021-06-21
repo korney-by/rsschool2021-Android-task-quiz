@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
         val fragmentQuiz = FragmentQuiz.newInstance(questionNumber)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_container, fragmentQuiz)
+            .replace(R.id.container, fragmentQuiz)
             .commit()
     }
 
@@ -35,10 +35,9 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
         val fragmentResult: Fragment = FragmentResult.newInstance(resultPercent)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_container, fragmentResult)
+            .replace(R.id.container, fragmentResult)
             .commit()
     }
-
 
     private fun setColorTheme(number: Int) {
         setTheme(Themes.getTheme(number))
@@ -72,5 +71,14 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     override fun showFragmentResult(resultPercent: Int) {
         openFragmentResult(resultPercent)
     }
+
+
+    override fun onBackPressed() {
+        val dialog = DialogCloseApp()
+        val manager = supportFragmentManager
+        dialog.show(manager, "Exit")
+
+    }
+
 
 }

@@ -44,9 +44,13 @@ class FragmentQuiz : Fragment() {
         binding.radioGroupAnswers.setOnCheckedChangeListener { _, checkedId ->
             onRadioGroupAnswers(checkedId)
         }
-        binding.quizToolbar.setNavigationOnClickListener { onQuizToolbar() }
-
         questionNumber = arguments?.getInt(NUMBER_QUESTION) ?: 0
+
+        if (questionNumber > 0) {
+            binding.quizToolbar.setNavigationContentDescription(R.string.back_toolbar_description)
+            binding.quizToolbar.setNavigationIcon(R.drawable.ic_baseline_chevron_left_24);
+            binding.quizToolbar.setNavigationOnClickListener { onQuizToolbar() }
+        }
 
         loadQuestion()
         showActualData()
@@ -107,8 +111,6 @@ class FragmentQuiz : Fragment() {
             (questionNumber < QuestionsList.getSize()) && !AnswersList.isNoAnswer(questionNumber)
         binding.previousButton.isEnabled = (questionNumber > 0)
     }
-
-
 
 
     private fun loadQuestion() {

@@ -2,5 +2,14 @@
     <string name="app_name">Quiz</string>
 
     <string name="submit_button">SUBMIT</string>
+    <string name="next_button">NEXT</string>
+    <string name="previous_button">PREVIOUS</string>
+    <string name="back_toolbar_description">Back to the previous question</string>
+
     <string name="your_result">Your result: %1$s \%%</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
+    <string name="dialog_alert">Alert</string>
+    <string name="close_app_question">Do you want close App ?</string>
+
 </resources>
