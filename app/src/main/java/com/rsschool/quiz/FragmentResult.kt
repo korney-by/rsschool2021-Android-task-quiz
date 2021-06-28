@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.rsschool.quiz.data.AnswersList
 import com.rsschool.quiz.data.QuestionsList
+import com.rsschool.quiz.data.Themes
 import com.rsschool.quiz.databinding.FragmentResultBinding
 import com.rsschool.quiz.interfaces.Navigator
+import com.rsschool.quiz.interfaces.Painter
 import java.lang.StringBuilder
 import kotlin.system.exitProcess
 
@@ -32,6 +34,7 @@ class FragmentResult : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Painter().applyTheme(Themes.NO_THEME)
         _binding = FragmentResultBinding.inflate(inflater, container, false)
 
         binding.closeButton.setOnClickListener { onCloseButton() }
@@ -43,29 +46,30 @@ class FragmentResult : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        resultPercent?.let { showResult(it) }
+        resultPercent?.let { showResult() }
     }
 
     private fun onShareResultButton() {
         val emailIntent = Intent(Intent.ACTION_SEND)
         with(emailIntent) {
             type = "text/plain"
-            putExtra(Intent.EXTRA_SUBJECT, "Quiz results")
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.quiz_results))
             putExtra(Intent.EXTRA_TEXT, getTextResults())
         }
-        startActivity(Intent.createChooser(emailIntent,"Complete action using"))
+        startActivity(Intent.createChooser(emailIntent, getString(R.string.complete_action_using)))
     }
 
     private fun getTextResults(): String {
-        val result = StringBuilder("You result: $resultPercent %\n\n")
+
+        val result = StringBuilder(String.format(getString(R.string.your_result_send),resultPercent))
         for (i in 0 until QuestionsList.getSize()) {
-            result.appendLine("${i+1}) ${QuestionsList.getText(i)}")
-            result.appendLine("Your answer: ${QuestionsList.getAnswers(i)[AnswersList.getAnswer(i)]}\n")
+            result.appendLine("${i + 1}) ${QuestionsList.getText(i)}")
+            result.appendLine(getString(R.string.your_answer, QuestionsList.getAnswers(i)[AnswersList.getAnswer(i)]))
         }
         return result.toString()
     }
 
-    private fun showResult(resultPercent: Int) {
+    private fun showResult() {
         binding.textResult.text = String.format(getString(R.string.your_result), resultPercent)
     }
 
@@ -74,7 +78,7 @@ class FragmentResult : Fragment() {
     }
 
     private fun onToStartButton() {
-        repeatQuiz()
+        Navigator().restartQuiz()
     }
 
     override fun onDestroyView() {
@@ -82,9 +86,6 @@ class FragmentResult : Fragment() {
         super.onDestroyView()
     }
 
-    private fun repeatQuiz() {
-        Navigator().restartQuiz()
-    }
 
     companion object {
         @JvmStatic

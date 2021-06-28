@@ -3,8 +3,9 @@ package com.rsschool.quiz.data
 import com.rsschool.quiz.R
 
 object Themes {
+    const val NO_THEME = -1
     fun getTheme(number: Int): Int {
-        return if (number<0) {
+        return if (number<=NO_THEME) {
             R.style.Theme_Quiz_Zero
         } else {
             when (number % 7) {

@@ -1,9 +1,10 @@
-package com.rsschool.quiz
+package com.rsschool.quiz.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import com.rsschool.quiz.R
 import kotlin.system.exitProcess
 
 class DialogCloseApp : DialogFragment() {

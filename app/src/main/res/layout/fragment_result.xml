@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,47 +19,44 @@
 
     <ImageButton
         android:id="@+id/share_result_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="75dp"
-        android:backgroundTintMode="screen"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/share_result"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_baseline_share_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_result"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toBottomOf="@+id/text_result" />
 
     <ImageButton
         android:id="@+id/to_start_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="5dp"
-        android:backgroundTintMode="screen"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/restart_quiz"
         android:scaleType="fitCenter"
-
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/share_result_button"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toBottomOf="@+id/share_result_button" />
 
     <ImageButton
         android:id="@+id/close_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-
-        android:backgroundTintMode="screen"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/close_app"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_baseline_close_24"
-        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/to_start_button"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toBottomOf="@+id/to_start_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

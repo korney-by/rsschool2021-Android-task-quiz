@@ -20,13 +20,18 @@ private const val NUMBER_QUESTION = "NUMBER_QUESTION"
 class FragmentQuiz : Fragment() {
     private var _binding: FragmentQuizBinding? = null
     private val binding get() = _binding!!
-
+    private val questionsCount = QuestionsList.getSize()
+    private var isLoadData = false
     private var questionNumber = -1
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        questionNumber = arguments?.getInt(NUMBER_QUESTION) ?: 0
+        Painter().applyTheme(questionNumber)
+
         _binding = FragmentQuizBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,11 +49,10 @@ class FragmentQuiz : Fragment() {
         binding.radioGroupAnswers.setOnCheckedChangeListener { _, checkedId ->
             onRadioGroupAnswers(checkedId)
         }
-        questionNumber = arguments?.getInt(NUMBER_QUESTION) ?: 0
 
-        if (questionNumber > 0) {
-            binding.quizToolbar.setNavigationContentDescription(R.string.back_toolbar_description)
-            binding.quizToolbar.setNavigationIcon(R.drawable.ic_baseline_chevron_left_24);
+        if (questionNumber == 0) {
+            binding.quizToolbar.navigationIcon=null
+        }else{
             binding.quizToolbar.setNavigationOnClickListener { onQuizToolbar() }
         }
 
@@ -63,42 +67,40 @@ class FragmentQuiz : Fragment() {
     }
 
     private fun onNextButton() {
-        if (questionNumber < QuestionsList.getSize() - 1) {
-            Painter().applyTheme(questionNumber + 1)
-            openQuestion(questionNumber + 1)
+        if (questionNumber < questionsCount - 1) {
+            loadQuestion(questionNumber + 1)
         } else {
-            Painter().applyTheme(-1)
-            openResultFragment()
+            Navigator().showResult()
         }
     }
 
-    private fun openQuestion(number: Int) {
+    private fun loadQuestion(number: Int) {
         Navigator().showFragmentQuiz(number)
     }
 
     private fun onPreviousButton() {
         if (questionNumber > 0) {
-            Painter().applyTheme(questionNumber - 1)
-            openQuestion(questionNumber - 1)
+            loadQuestion(questionNumber - 1)
         }
     }
 
     private fun onQuizToolbar() {
         binding.previousButton.callOnClick()
+        binding.previousButton.callOnClick()
     }
 
-    private fun openResultFragment() {
-        Navigator().showFragmentResult(QuestionsList.getResult(AnswersList))
-    }
 
     private fun saveAnswerState(answer: Int) {
-        AnswersList.setAnswer(questionNumber, answer)
+        if (!isLoadData) {
+            AnswersList.setAnswer(questionNumber, answer)
+            Navigator().onSetNewAnswer(questionNumber)
+        }
     }
 
     private fun showActualData() {
         setEnabledButtons()
-        binding.quizToolbar.title = "Question ${questionNumber + 1}"
-        if (questionNumber == QuestionsList.getSize() - 1) {
+        binding.quizToolbar.title = String.format(getString(R.string.question),questionNumber + 1,questionsCount)
+        if (questionNumber == questionsCount - 1) {
             binding.nextButton.text = getString(R.string.submit_button)
         }
     }
@@ -108,12 +110,13 @@ class FragmentQuiz : Fragment() {
 
         binding.previousButton.visibility = if (questionNumber == 0) View.GONE else View.VISIBLE
         binding.nextButton.isEnabled =
-            (questionNumber < QuestionsList.getSize()) && !AnswersList.isNoAnswer(questionNumber)
+            (questionNumber < questionsCount) && !AnswersList.isNoAnswer(questionNumber)
         binding.previousButton.isEnabled = (questionNumber > 0)
     }
 
 
     private fun loadQuestion() {
+        isLoadData=true
         binding.question.text = QuestionsList.getText(questionNumber)
         binding.radioGroupAnswers.removeAllViews()
 
@@ -122,7 +125,7 @@ class FragmentQuiz : Fragment() {
             RadioGroup.LayoutParams.WRAP_CONTENT
         )
 
-        for (i in 0 until QuestionsList.getAnswers(questionNumber).size) {
+        for (i in QuestionsList.getAnswers(questionNumber).indices) {
             val radioButtonAnswer = MaterialRadioButton(binding.radioGroupAnswers.context)
             val e = QuestionsList.getAnswers(questionNumber)[i]
             with(radioButtonAnswer) {
@@ -135,16 +138,11 @@ class FragmentQuiz : Fragment() {
             }
             binding.radioGroupAnswers.addView(radioButtonAnswer)
         }
+        isLoadData=false
     }
 
+
     companion object {
-//        @JvmStatic
-//        fun newInstance(questionNumber: Int) =
-//            FragmentQuiz().apply {
-//                arguments = Bundle().apply {
-//                    putInt(NUMBER_QUESTION, questionNumber)
-//                }
-//            }
 
         @JvmStatic
         fun newInstance(questionNumber: Int): FragmentQuiz {

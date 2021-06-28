@@ -6,10 +6,20 @@
     <string name="previous_button">PREVIOUS</string>
     <string name="back_toolbar_description">Back to the previous question</string>
 
-    <string name="your_result">Your result: %1$s \%%</string>
     <string name="button_yes">Yes</string>
     <string name="button_no">No</string>
     <string name="dialog_alert">Alert</string>
-    <string name="close_app_question">Do you want close App ?</string>
+    <string name="close_app_question">Do you want close Application?</string>
+
+    <string name="your_answer">Your answer: %1$s\n</string>
+    <string name="your_result">Your result: %1$s \%%</string>
+    <string name="your_result_send">Your result: %1$s \%%\n\n</string>
+    <string name="quiz_results">Quiz results</string>
+    <string name="complete_action_using">Complete action using</string>
+    <string name="question">Question %1$s of  %2$s</string>
+    <string name="close_app">Close application</string>
+    <string name="share_result">Share result</string>
+    <string name="restart_quiz">Restart quiz</string>
+
 
 </resources>

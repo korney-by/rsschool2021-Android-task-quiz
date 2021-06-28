@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="submit_button">РЕЗУЛЬТАТ</string>
+    <string name="next_button">следующий</string>
+    <string name="previous_button">предыдущий</string>
+    <string name="back_toolbar_description">Вернуться к предыдущему вопросу</string>
+    <string name="button_yes">Да</string>
+    <string name="button_no">Нет</string>
+    <string name="dialog_alert">Оповещение</string>
+    <string name="close_app_question">Хотите завершить приложение?</string>
+    <string name="your_answer">"Ваш ответ: %1$s\n"</string>
+    <string name="your_result">Ваш результат: %1$d \%%</string>
+    <string name="your_result_send">Ваш результат: %1$d \%%\n\n</string>
+    <string name="quiz_results">Результаты опроса</string>
+    <string name="complete_action_using">Завершить действие с помощью</string>
+    <string name="question">Вопрос %1$d из %2$d</string>
+    <string name="close_app">Завершить приложение</string>
+    <string name="share_result">Подельться результатом</string>
+    <string name="restart_quiz">Начать сначала</string>
+</resources>

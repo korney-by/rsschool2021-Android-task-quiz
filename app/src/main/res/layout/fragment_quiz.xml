@@ -16,9 +16,11 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/quiz_toolbar"
             android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_baseline_chevron_left_24"
+            app:navigationContentDescription="@string/back_toolbar_description"
             android:layout_height="?attr/actionBarSize"
             android:fitsSystemWindows="true"
-            tools:title="Question 1" />
+            tools:title="@string/question" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -72,7 +75,7 @@
                 app:layout_constraintEnd_toEndOf="@id/margin_end_guideline"
                 app:layout_constraintStart_toStartOf="@id/margin_start_guideline"
                 app:layout_constraintTop_toTopOf="@id/margin_top_guideline"
-                tools:text="Est-ce qu'il travaille a Paris?" />
+                tools:text="Question text?" />
 
             <RadioGroup
                 android:id="@+id/radio_group_answers"
@@ -88,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    tools:text="Option 1" />
+                    tools:text="Option 1"/>
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,7 +99,8 @@
 
     <Button
         android:id="@+id/previous_button"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
+        android:minWidth="120dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/previous_button"
@@ -105,7 +109,8 @@
 
     <Button
         android:id="@+id/next_button"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
+        android:minWidth="120dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/next_button"
