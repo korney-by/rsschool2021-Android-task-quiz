@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.rsschool.quiz.data.AnswersList
 import com.rsschool.quiz.data.QuestionsList
 import com.rsschool.quiz.data.Themes
@@ -91,9 +92,13 @@ class FragmentResult : Fragment() {
         @JvmStatic
         fun newInstance(resultPercent: Int) =
             FragmentResult().apply {
-                arguments = Bundle().apply {
-                    putInt(RESULT_PERCENT, resultPercent)
-                }
+//                arguments = Bundle().apply {
+//                    putInt(RESULT_PERCENT, resultPercent)
+//                }
+                arguments = bundleOf (
+                    RESULT_PERCENT to resultPercent
+                )
+
             }
     }
 }

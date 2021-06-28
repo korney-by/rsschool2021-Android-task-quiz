@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.rsschool.quiz.data.AnswersList
@@ -147,10 +148,15 @@ class FragmentQuiz : Fragment() {
         @JvmStatic
         fun newInstance(questionNumber: Int): FragmentQuiz {
             val fragment = FragmentQuiz()
-            val args = Bundle().apply {
-                putInt(NUMBER_QUESTION, questionNumber)
-            }
-            fragment.arguments = args
+//            val args = Bundle().apply {
+//                putInt(NUMBER_QUESTION, questionNumber)
+//            }
+//           fragment.arguments = args
+
+            fragment.arguments = bundleOf(
+                NUMBER_QUESTION to questionNumber
+            )
+
             return fragment
         }
 
