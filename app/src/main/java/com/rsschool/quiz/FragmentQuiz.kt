@@ -87,7 +87,7 @@ class FragmentQuiz : Fragment() {
 
     private fun onQuizToolbar() {
         binding.previousButton.callOnClick()
-        binding.previousButton.callOnClick()
+        //binding.previousButton.callOnClick()
     }
 
 
