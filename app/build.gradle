@@ -6,15 +6,13 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-//    viewBinding{
-//         enabled=true
-//    }
+
 
     defaultConfig {
         applicationId "com.rsschool.quiz"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
+        versionCode 10
         versionName "1.0"
     }
 

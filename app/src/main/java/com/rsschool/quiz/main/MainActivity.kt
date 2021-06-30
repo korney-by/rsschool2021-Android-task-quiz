@@ -20,16 +20,21 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: PagerAdapterQuiz
     private var isResultShow = false
+    private var positionQuiz = 0
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(RESULT_SHOW, isResultShow)
+        outState.putInt("posi", positionQuiz)
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         isResultShow = savedInstanceState.getBoolean(RESULT_SHOW)
+        positionQuiz = savedInstanceState.getInt("posi")
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +48,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
                 if (isResultShow) {
                     setColorThemeAndStatusBar(Themes.NO_THEME)
                 } else {
+                    positionQuiz = position
                     setColorThemeAndStatusBar(position)
                 }
             }
@@ -50,8 +56,8 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         startApp()
     }
 
@@ -84,7 +90,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     private fun startApp() {
         if (!isResultShow) {
             setupPagerAdapterQuiz()
-            openFragmentQuiz(0)
+            openFragmentQuiz(positionQuiz)
         } else {
             setupPagerAdapterResult()
         }
@@ -99,6 +105,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     override fun restartQuiz() {
         AnswersList.revokeAll()
         isResultShow = false
+        positionQuiz = 0
         startApp()
     }
 
