@@ -5,10 +5,10 @@
     <string name="next_button">следующий</string>
     <string name="previous_button">предыдущий</string>
     <string name="back_toolbar_description">Вернуться к предыдущему вопросу</string>
-    <string name="button_yes">Да</string>
-    <string name="button_no">Нет</string>
+    <string name="button_exit">Выйти</string>
+    <string name="button_cancel">Отмена</string>
     <string name="dialog_alert">Оповещение</string>
-    <string name="close_app_question">Хотите завершить приложение?</string>
+    <string name="close_app_question">Выйти из приложения?</string>
     <string name="your_answer">"Ваш ответ: %1$s\n"</string>
     <string name="your_result">Ваш результат: %1$d \%%</string>
     <string name="your_result_send">Ваш результат: %1$d \%%\n\n</string>

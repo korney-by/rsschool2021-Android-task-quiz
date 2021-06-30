@@ -6,10 +6,10 @@
     <string name="previous_button">PREVIOUS</string>
     <string name="back_toolbar_description">Back to the previous question</string>
 
-    <string name="button_yes">Yes</string>
-    <string name="button_no">No</string>
+    <string name="button_exit">Exit</string>
+    <string name="button_cancel">Cancel</string>
     <string name="dialog_alert">Alert</string>
-    <string name="close_app_question">Do you want close Application?</string>
+    <string name="close_app_question">Exit the аpplication?</string>
 
     <string name="your_answer">Your answer: %1$s\n</string>
     <string name="your_result">Your result: %1$s \%%</string>

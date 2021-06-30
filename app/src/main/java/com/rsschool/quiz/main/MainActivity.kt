@@ -25,14 +25,14 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(RESULT_SHOW, isResultShow)
-        outState.putInt("posi", positionQuiz)
+        outState.putInt(POSITION_QUIZ, positionQuiz)
 
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         isResultShow = savedInstanceState.getBoolean(RESULT_SHOW)
-        positionQuiz = savedInstanceState.getInt("posi")
+        positionQuiz = savedInstanceState.getInt(POSITION_QUIZ)
     }
 
 
@@ -142,6 +142,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
 
     companion object {
         private const val RESULT_SHOW = "RESULT_SHOW"
+        private const val POSITION_QUIZ = "POSITION_QUIZ"
     }
 
 }

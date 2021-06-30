@@ -11,12 +11,12 @@ class DialogCloseApp : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-            builder.setTitle(R.string.dialog_alert)
-                .setMessage(R.string.close_app_question)
+            builder.setMessage(R.string.close_app_question)
                 .setCancelable(true)
-                .setPositiveButton(R.string.button_yes) { _, _ -> exitProcess(0) }
-                .setNegativeButton(R.string.button_no, null)
+                .setPositiveButton(R.string.button_exit) { _, _ -> exitProcess(0) }
+                .setNegativeButton(R.string.button_cancel, null)
             builder.create()
+
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }
