@@ -1,4 +1,4 @@
-package com.rsschool.quiz
+package com.rsschool.quiz.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import com.rsschool.quiz.R
 import com.rsschool.quiz.data.AnswersList
 import com.rsschool.quiz.data.QuestionsList
 import com.rsschool.quiz.data.Themes
@@ -16,11 +17,9 @@ import com.rsschool.quiz.interfaces.Painter
 import java.lang.StringBuilder
 import kotlin.system.exitProcess
 
-private const val RESULT_PERCENT = "RESULT_PERCENT"
-
 class FragmentResult : Fragment() {
     private var _binding: FragmentResultBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = requireNotNull(_binding)
 
     private var resultPercent: Int? = null
 
@@ -63,7 +62,7 @@ class FragmentResult : Fragment() {
     private fun getTextResults(): String {
 
         val result = StringBuilder(String.format(getString(R.string.your_result_send),resultPercent))
-        for (i in 0 until QuestionsList.getSize()) {
+        for (i in 0 until QuestionsList.count) {
             result.appendLine("${i + 1}) ${QuestionsList.getText(i)}")
             result.appendLine(getString(R.string.your_answer, QuestionsList.getAnswers(i)[AnswersList.getAnswer(i)]))
         }
@@ -89,12 +88,12 @@ class FragmentResult : Fragment() {
 
 
     companion object {
+        private const val RESULT_PERCENT = "RESULT_PERCENT"
+
         @JvmStatic
         fun newInstance(resultPercent: Int) =
             FragmentResult().apply {
-//                arguments = Bundle().apply {
-//                    putInt(RESULT_PERCENT, resultPercent)
-//                }
+
                 arguments = bundleOf (
                     RESULT_PERCENT to resultPercent
                 )

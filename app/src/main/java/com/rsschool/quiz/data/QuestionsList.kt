@@ -6,6 +6,7 @@ object QuestionsList {
         val correctAnswer: Int,
         val answers: ArrayList<String>
     )
+    val count get() = questionsList.size
 
     private val questionsList = ArrayList<Question>()
 
@@ -13,9 +14,6 @@ object QuestionsList {
         questionsList.add(Question(text, correctAnswer, answers))
     }
 
-    fun getSize(): Int {
-        return questionsList.size
-    }
 
     private fun getQuestion(index: Int): Question {
         return questionsList[index]
@@ -35,12 +33,12 @@ object QuestionsList {
 
     fun getResult(userAnswers: AnswersList): Int {
         var correctCount = 0
-        for (i in 0 until getSize()) {
+        for (i in 0 until count) {
             if (getCorrectAnswer(i) == userAnswers.getAnswer(i)) {
                 correctCount++
             }
         }
-        return correctCount * 100 / getSize()
+        return correctCount * 100 / count
     }
 
     init {
@@ -92,7 +90,7 @@ object QuestionsList {
             )
         )
         add(
-            " Куда на курортных пляжах просят не заплывать отдыхающих??",
+            "Куда на курортных пляжах просят не заплывать отдыхающих?",
             2,
             arrayListOf(" За горизонт", "За границу", "За буйки", "Замуж", "В камыши", "В дальние дали")
         )

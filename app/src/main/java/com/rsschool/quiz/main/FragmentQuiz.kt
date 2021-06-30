@@ -1,4 +1,4 @@
-package com.rsschool.quiz
+package com.rsschool.quiz.main
 
 
 import android.os.Bundle
@@ -9,19 +9,18 @@ import android.widget.RadioGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.google.android.material.radiobutton.MaterialRadioButton
+import com.rsschool.quiz.R
 import com.rsschool.quiz.data.AnswersList
 import com.rsschool.quiz.data.QuestionsList
 import com.rsschool.quiz.databinding.FragmentQuizBinding
 import com.rsschool.quiz.interfaces.Navigator
 import com.rsschool.quiz.interfaces.Painter
 
-
-private const val NUMBER_QUESTION = "NUMBER_QUESTION"
-
 class FragmentQuiz : Fragment() {
     private var _binding: FragmentQuizBinding? = null
-    private val binding get() = _binding!!
-    private val questionsCount = QuestionsList.getSize()
+    private val binding get() = requireNotNull(_binding)
+
+    private val questionsCount = QuestionsList.count//getSize()
     private var isLoadData = false
     private var questionNumber = -1
 
@@ -144,14 +143,11 @@ class FragmentQuiz : Fragment() {
 
 
     companion object {
+        private const val NUMBER_QUESTION = "NUMBER_QUESTION"
 
         @JvmStatic
         fun newInstance(questionNumber: Int): FragmentQuiz {
             val fragment = FragmentQuiz()
-//            val args = Bundle().apply {
-//                putInt(NUMBER_QUESTION, questionNumber)
-//            }
-//           fragment.arguments = args
 
             fragment.arguments = bundleOf(
                 NUMBER_QUESTION to questionNumber

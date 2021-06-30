@@ -1,4 +1,4 @@
-package com.rsschool.quiz
+package com.rsschool.quiz.main
 
 
 import android.os.Bundle
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     }
 
     private fun setColorThemeAndStatusBar(number: Int) {
-        val numberTheme = if (number < QuestionsList.getSize()) number else Themes.NO_THEME
+        val numberTheme = if (number < QuestionsList.count) number else Themes.NO_THEME
         setTheme(Themes.getTheme(numberTheme))
         setColorStatusBar()
     }
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
     }
 
     override fun getCountPagesQuiz(): Int {
-        return min(AnswersList.getHasAnswers() + 1, QuestionsList.getSize())
+        return min(AnswersList.getHasAnswers() + 1, QuestionsList.count)
     }
 
     companion object {

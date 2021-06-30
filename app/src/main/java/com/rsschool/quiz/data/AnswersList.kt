@@ -2,7 +2,7 @@ package com.rsschool.quiz.data
 
 object AnswersList {
     private const val NO_ANSWER = -1
-    private val answerList: IntArray = IntArray(QuestionsList.getSize()) { NO_ANSWER }
+    private val answerList: IntArray = IntArray(QuestionsList.count) { NO_ANSWER }
     private var hasAnswers = NO_ANSWER
 
     fun isNoAnswer(index: Int): Boolean {
