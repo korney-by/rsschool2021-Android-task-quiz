@@ -134,6 +134,7 @@ class MainActivity : AppCompatActivity(), Painter, Navigator {
         val manager = supportFragmentManager
         dialog.show(manager, "Exit")
 
+
     }
 
     override fun getCountPagesQuiz(): Int {
